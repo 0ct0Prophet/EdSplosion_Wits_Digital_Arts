@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,7 +18,8 @@ public class Movement : MonoBehaviour
     [Header("Dash")]//sets the dash time and cooldown
     [SerializeField] private float dashSpeed = 40f;
     [SerializeField] private float DashDecaySpeed = -10f;
-
+    [SerializeField] private float dashCooldown = 5f;
+    
 
     [Header("References")] //references to the player and the character controller
     [SerializeField] private Transform cameraTransform;
@@ -30,10 +32,14 @@ public class Movement : MonoBehaviour
     private CharacterController _characterController;
     private Vector2 _moveInput;
     private bool _isGrounded;
+    private bool _canDoubleJump;
     private bool _isDashing;
 
     private float _verticalVelocity;
     private float _horizontalVelocity;
+    private float _dashCooldownTimer = 0f;
+
+    public TextMeshProUGUI dashTimer;
 
     private void Awake()
     {
@@ -68,9 +74,15 @@ public class Movement : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context) //makes the player jump
     {
-        if (_isGrounded)
+        if (_isGrounded)//if on the ground, jump and allow double jump
         {
             _verticalVelocity = jumpForce;
+            _canDoubleJump = true;
+        }
+        else if(_canDoubleJump)//if in the air and double jump is available, disables double jumo if pressed
+        {
+            _verticalVelocity = jumpForce;
+            _canDoubleJump = false;
         }
     }
 
@@ -78,11 +90,11 @@ public class Movement : MonoBehaviour
 
 private void Dash(InputAction.CallbackContext context) //makes the player dash
     {
-        if (!_isDashing)
+        if (!_isDashing && _dashCooldownTimer <= 0)//checks if the player is already dashing and if timer is at 0.
         {
-            walkspeed = dashSpeed;
+            walkspeed = dashSpeed;//increase speed to dash speed
             _isDashing = true;
-            print("dashing");
+            _dashCooldownTimer = dashCooldown;//resets the cooldown timer
         }
     }
 
@@ -97,10 +109,10 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
         HandleGravity();
         HandleDash();
         HandleMovement();
-
+        dashTimer.text = _dashCooldownTimer.ToString("F1");//displays the cooldown timer on the UI
     }
 
-    private void HandleGravity()
+    private void HandleGravity() //creates gravithy that makes the player fall back to the ground
     {
         if (_isGrounded && _verticalVelocity <= 0)
         {
@@ -110,20 +122,24 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
         _verticalVelocity += gravity * Time.deltaTime;
     }
 
-    private void HandleDash()
+    private void HandleDash() //resets the players sped to normal after dashing
     {
         if (_isDashing && walkspeed <= _horizontalVelocity)
         {
             walkspeed = _horizontalVelocity;
             _isDashing = false;
-
         }
         else if( walkspeed <= _horizontalVelocity)
         {
             walkspeed = _horizontalVelocity;
         }
+        if (_dashCooldownTimer < 0)
+        {
+            _dashCooldownTimer = 0;
+        }
 
         walkspeed += DashDecaySpeed * Time.deltaTime;
+        _dashCooldownTimer -= Time.deltaTime;
     }
 
     private void HandleMovement() //changes movement accoring to the camera direction and the input from the player
