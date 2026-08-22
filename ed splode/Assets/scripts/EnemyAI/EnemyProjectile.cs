@@ -1,11 +1,17 @@
 using UnityEngine;
-
-public class EnemyProjectile : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    public float damage;
+
+    private void Start()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        Destroy(gameObject, 10f);
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
+            other.GetComponent<PlayerStats>().TakeDamage(damage);
             Destroy(gameObject);
         }
     }

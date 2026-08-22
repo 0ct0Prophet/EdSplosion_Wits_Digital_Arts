@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3813075142036515679}
   - component: {fileID: 441767471698222793}
   m_Layer: 0
-  m_Name: EnemyProjectile
+  m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b2636e561456a428d8f47a1fde9a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
+  damage: 20
 --- !u!54 &441767471698222793
 Rigidbody:
   m_ObjectHideFlags: 0

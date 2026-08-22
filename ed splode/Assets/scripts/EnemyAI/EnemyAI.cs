@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyAi : MonoBehaviour
@@ -47,9 +47,6 @@ public class EnemyAi : MonoBehaviour
             agent.SetDestination(walkPoint);
 
         {
-            if (walkPointSet)
-                agent.SetDestination(walkPoint);
-
             Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
             //Walkpoint reached
@@ -85,21 +82,16 @@ public class EnemyAi : MonoBehaviour
 
         transform.LookAt(player);
 
+    
         if (!alreadyAttacked)
-        {
-            ///Attack code here
-            Rigidbody rb = Instantiate(
-                enemyWeapon,
-                transform.position,
-                Quaternion.identity
-            ).GetComponent<Rigidbody>();
+    {
+    ///ATTACK CODE!!
+      Rigidbody rb = Instantiate(enemyWeapon, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+      rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
 
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            ///
-
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
+      alreadyAttacked = true;
+      Invoke(nameof(ResetAttack), timeBetweenAttacks);
+    }
     }
 
     private void ResetAttack()
