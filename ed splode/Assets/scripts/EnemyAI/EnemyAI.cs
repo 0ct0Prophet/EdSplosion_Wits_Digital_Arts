@@ -7,7 +7,7 @@ public class EnemyAi : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     public GameObject enemyWeapon;
-    public float health;
+    public float health = 50f;
 
     //looking around
     public Vector3 walkPoint;
