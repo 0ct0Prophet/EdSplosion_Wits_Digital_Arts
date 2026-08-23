@@ -2,30 +2,31 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+  private void OnCollisionEnter(Collision collision)
     {
-        // Destroy the bullet on collision
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            // You can add logic here to damage the enemy if needed
-            print("hit " + collision.gameObject.name + "!");
-            Destroy(gameObject); // Destroy the enemy on collision
+            EnemyAi enemy = collision.gameObject.GetComponent<EnemyAi>();
+
+            if (enemy != null)
+            {
+                enemy.TakeDamage(10);
+                Debug.Log("Enemy took 10 damage! Health remaining: " + enemy.health);
+            }
+
+            Destroy(gameObject);
         }
 
-        // Destroy the bullet on collision
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            // You can add logic here to damage the enemy if needed
-            print("hit a wall " + collision.gameObject.name + "!");
-            Destroy(gameObject); // Destroy the enemy on collision
-        }
-
-        // Destroy the bullet on collision
-        if (collision.gameObject.CompareTag("Floor"))
-        {
-            // You can add logic here to damage the enemy if needed
-            print("hit the floor " + collision.gameObject.name + "!");
-            Destroy(gameObject); // Destroy the enemy on collision
-        }
+    if (collision.gameObject.CompareTag("Wall"))
+    {
+        print("hit a wall " + collision.gameObject.name + "!");
+        Destroy(gameObject);
     }
-} 
+
+    if (collision.gameObject.CompareTag("Floor"))
+    {
+        print("hit the floor " + collision.gameObject.name + "!");
+        Destroy(gameObject);
+    }
+}
+    }
