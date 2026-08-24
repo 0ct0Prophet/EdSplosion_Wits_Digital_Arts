@@ -37,6 +37,6 @@ public class PlayerStats : MonoBehaviour
     {
         Debug.Log("You died");
 
-
+        Cursor.visible = true;
     }
 }
