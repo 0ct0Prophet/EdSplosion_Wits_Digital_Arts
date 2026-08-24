@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     [Header("Speed")] //sets the speeds for run, walk, and crouch
-    [SerializeField] private float walkspeed = 20f;
+    [SerializeField] public float walkspeed = 20f;
 
 
 
@@ -157,8 +157,16 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
             _verticalVelocity = initialFallVelocity;
         }
 
+    }
 
-
+    // Add this to the player Movement class (below existing code)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("SpeedBoost")) // set SpeedBoost objects to this tag, or use another check
+        {
+            var sb = other.GetComponent<SpeedBoost>();
+            if (sb != null) sb.PickUp(player: other);
+        }
     }
 
 
