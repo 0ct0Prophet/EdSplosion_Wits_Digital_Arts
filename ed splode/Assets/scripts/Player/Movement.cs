@@ -109,7 +109,7 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
         HandleGravity();
         HandleDash();
         HandleMovement();
-        dashTimer.text = _dashCooldownTimer.ToString("F1");//displays the cooldown timer on the UI
+        dashTimer.text = "Dash ready in: " + _dashCooldownTimer.ToString("F1");//displays the cooldown timer on the UI
     }
 
     private void HandleGravity() //creates gravithy that makes the player fall back to the ground
