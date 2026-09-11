@@ -80,14 +80,14 @@ public class EnemyAi : MonoBehaviour
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+        transform.LookAt(player.position);
 
     
         if (!alreadyAttacked)
     {
     ///ATTACK CODE!!
-      Rigidbody rb = Instantiate(enemyWeapon, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-      rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+      Rigidbody rb = Instantiate(enemyWeapon,transform.position + transform.forward, Quaternion.identity).GetComponent<Rigidbody>();
+    rb.AddForce((player.position - transform.position).normalized * 32f, ForceMode.Impulse);
 
       alreadyAttacked = true;
       Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -112,5 +112,6 @@ public class EnemyAi : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
 
 }

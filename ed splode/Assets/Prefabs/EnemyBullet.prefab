@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b2636e561456a428d8f47a1fde9a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  damage: 20
+  damage: 10
 --- !u!96 &2253760098612197624
 TrailRenderer:
   serializedVersion: 4
