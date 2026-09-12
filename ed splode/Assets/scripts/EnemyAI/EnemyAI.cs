@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class EnemyAi : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class EnemyAi : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
     public GameObject enemyWeapon;
     public float health = 50f;
+    public Renderer enemyRenderer;
+    public Color normalColour;
+    public Color hitColour = Color.red;
+    public GameObject deathEffect;
 
     //looking around
     public Vector3 walkPoint;
@@ -21,7 +26,14 @@ public class EnemyAi : MonoBehaviour
     //states
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    IEnumerator FlashRed()
+    {
+        enemyRenderer.material.color = hitColour;
 
+        yield return new WaitForSeconds(0.2f);
+
+        enemyRenderer.material.color = normalColour;
+    }
     private void Awake()
     {
         player = GameObject.Find("player").transform;
@@ -103,9 +115,13 @@ public class EnemyAi : MonoBehaviour
     {
         ///Take damage code here
         health -= damage;
+        StartCoroutine(FlashRed());
 
         if (health <= 0)
-            Invoke(nameof(DestroyEnemy), 0.5f);
+        {
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
+            Invoke(nameof(DestroyEnemy), 0.1f);
+        }
     }
 
     private void DestroyEnemy()
@@ -113,5 +129,5 @@ public class EnemyAi : MonoBehaviour
         Destroy(gameObject);
     }
 
-
 }
+
