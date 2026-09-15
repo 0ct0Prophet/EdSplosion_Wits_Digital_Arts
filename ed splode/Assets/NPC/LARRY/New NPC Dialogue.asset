@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa98d4b0d5481a41bac000752f18aaf, type: 3}
+  m_Name: New NPC Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::NpcDialogue
+  npcName: Larry
+  dialogueLines:
+  - 'Hey missy, funny running into you while you''re causing such a ruckus. '
+  - 'Well, I might as well help you out...keep it between us but I don''t like this
+    place very much either. '
+  - Now go finish what you started.
+  autoProgressLine: 000101
+  autoProgressDelay: 1.5
+  typingSpeed: 0.5
+  voiceClips: []
+  voicePitch: 2.07
