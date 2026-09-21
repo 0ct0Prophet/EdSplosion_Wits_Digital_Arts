@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using TMPro;
 using UnityEngine.InputSystem;
 
 public class Weapon : MonoBehaviour
@@ -26,6 +28,18 @@ public class Weapon : MonoBehaviour
     //Spread
     public float spreadIntensity;
 
+    //Muzzle
+    public GameObject muzzleEffect;
+    public Animator animator;
+
+    //Reloading
+    public float reloadTime;
+    public float magazineSize, bulletsLeft;
+    public bool isReloading;
+
+    
+
+
     //Different shooting modes
     public enum ShootingMode
     {
@@ -41,12 +55,19 @@ public class Weapon : MonoBehaviour
     {
         readyToShoot = true;
         burstBulletsLeft = burstPerBullet;
+        animator = GetComponent<Animator>();
 
+        bulletsLeft = magazineSize;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(bulletsLeft == 0 && isShooting)
+        {
+            SoundManager.Instance.emptyMagazineSound.Play();
+        }   
+
         if (currentShootingMode == ShootingMode.Auto)
         {
             //Holding down the left mouse button to fire the weapon
@@ -54,27 +75,53 @@ public class Weapon : MonoBehaviour
         }
 
         else if (currentShootingMode == ShootingMode.Burst || currentShootingMode == ShootingMode.Single)
-        { 
+        {
             isShooting = Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame;
         }
 
-        if (readyToShoot && isShooting)
+        //Manual Reload
+        if (Keyboard.current.rKey.wasPressedThisFrame && bulletsLeft < magazineSize && isReloading == false)
+        {
+            Reload();
+        }
+
+        //Automatic Reload
+        if (readyToShoot && isShooting == false && isReloading == false && bulletsLeft <= 0)
+        {
+            Reload();
+        }
+
+
+        if (readyToShoot && isShooting && bulletsLeft > 0)
         {
             burstBulletsLeft = burstPerBullet;
             FireWeaponMethod();
         }
 
-
-
-            //Left mouse button click to fire the weapon
-            if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
+        //Left mouse button click to fire the weapon
+        if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
         {
             FireWeaponMethod();
         }
+
+        if(AmmoManager.Instance.ammoDisplay != null)
+        {
+            AmmoManager.Instance.ammoDisplay.text = $"{bulletsLeft/burstPerBullet} / {magazineSize/burstPerBullet}";
+        }
+
+
+
     }
 
     private void FireWeaponMethod()
     {
+        bulletsLeft--;
+
+        muzzleEffect.GetComponent<ParticleSystem>().Play();
+        animator.SetTrigger("RECOIL");
+
+        SoundManager.Instance.shootingSound.Play();
+
         readyToShoot = false;
 
         Vector3 shootingDirection = CalculateDirectionAndSpread().normalized;
@@ -92,7 +139,7 @@ public class Weapon : MonoBehaviour
         StartCoroutine(DestroyBulletAfterTime(bullet, bulletPrefabLifetime));
 
         //Check if the shooting is done
-        if (allowReset) 
+        if (allowReset)
         {
             Invoke("ResetShot", shootingDelay);
             allowReset = false;
@@ -107,6 +154,19 @@ public class Weapon : MonoBehaviour
 
     }
 
+    private void Reload()
+    {
+        isReloading = true;
+        SoundManager.Instance.reloadingSound.Play();
+        animator.SetTrigger("RELOAD");
+        Invoke("ReloadCompleted", reloadTime);
+    }
+
+    private void ReloadCompleted()
+    {
+        bulletsLeft = magazineSize;
+        isReloading = false;
+    }
     private void ResetShot()
     {
         readyToShoot = true;
@@ -119,7 +179,7 @@ public class Weapon : MonoBehaviour
         RaycastHit hit;
 
         Vector3 targetPoint;
-        if (Physics.Raycast(ray,out hit))
+        if (Physics.Raycast(ray, out hit))
         {
             targetPoint = hit.point;
         }
