@@ -10,31 +10,47 @@ public class InteractionDetector : MonoBehaviour
         interactionPrompt.SetActive(false); 
     }
 
-    public void OnInteract(InputAction.CallbackContext context)
+    private void Update()
     {
-        if (context.performed) 
+        if(Keyboard.current.eKey.wasPressedThisFrame)
         {
-            interactableInRange?.Interact(); 
+            float interactRange = 2f;
+            Collider[] colliderArray = Physics.OverlapSphere(transform.position, interactRange);
+
+            foreach (Collider collider in colliderArray)
+            {
+                Debug.Log("Collider: " + collider.name);
+
+            }   
         }
     }
 
-    // Update is called once per frame
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.TryGetComponent(out IInteractable interactable) && interactable.canInteract()) //Check if the object has the tag "Interactable"
-        {
-            interactableInRange = interactable; //Set the interactable in range
-            interactionPrompt.SetActive(true); //Show prompt
-        }
-    }
 
-    private void OnTriggerExit(Collider collision)
-    {
-        if (collision.TryGetComponent(out IInteractable interactable) && interactable == interactableInRange) //Check if the object has the tag "Interactable"
-        {
-            interactableInRange = null; //Clear the interactable in range
-            interactionPrompt.SetActive(false); //Hide prompt
-        }
-    }
+    //public void OnInteract(InputAction.CallbackContext context)
+    //{
+    //    if (context.performed) 
+    //    {
+    //        interactableInRange?.Interact(); 
+    //    }
+    //}
+
+    //// Update is called once per frame
+    //private void OnTriggerEnter(Collider collision)
+    //{
+    //    if (collision.TryGetComponent(out IInteractable interactable) && interactable.canInteract()) //Check if the object has the tag "Interactable"
+    //    {
+    //        interactableInRange = interactable; //Set the interactable in range
+    //        interactionPrompt.SetActive(true); //Show prompt
+    //    }
+    //}
+
+    //private void OnTriggerExit(Collider collision)
+    //{
+    //    if (collision.TryGetComponent(out IInteractable interactable) && interactable == interactableInRange) //Check if the object has the tag "Interactable"
+    //    {
+    //        interactableInRange = null; //Clear the interactable in range
+    //        interactionPrompt.SetActive(false); //Hide prompt
+    //    }
+    //}
 }
 
