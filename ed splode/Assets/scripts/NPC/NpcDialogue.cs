@@ -13,12 +13,6 @@ public class NpcDialogue : ScriptableObject
     public float typingSpeed = 0.05f;
     public AudioClip[] voiceClips;
     public float voicePitch = 1.0f;
-
-
-    
-
-
-
 }
 
 
