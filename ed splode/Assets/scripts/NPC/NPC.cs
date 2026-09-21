@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 
-public class NPC : MonoBehaviour, Interactable 
+public class NPC : MonoBehaviour, IInteractable 
 {
     public NpcDialogue dialogueData;
     public GameObject dialogueUI;
@@ -23,15 +23,15 @@ public class NPC : MonoBehaviour, Interactable
 
         // Check if dialogue data is null or if the game is paused and dialogue is not active
         if (dialogueData == null || (PauseController.isGamePaused && !_isDialogueActive))
-        
+
             return;
-        
+
 
         if (!_isDialogueActive)
         {
             NextLine();
         }
-        else 
+        else
         {
             StartDialogue();
         }
@@ -45,7 +45,8 @@ public class NPC : MonoBehaviour, Interactable
         nameText.SetText(dialogueData.npcName);
         potraitImage.sprite = dialogueData.npcPotrait;
 
-        PauseController.SetGamePaused(true);
+        dialogueUI .SetActive(true);
+        PauseController.SetPaused(true);
 
 
         StartCoroutine(TypeDialogue());
@@ -100,7 +101,7 @@ public class NPC : MonoBehaviour, Interactable
         _isDialogueActive = false;
         dialogueText.SetText("");   
         dialogueUI.SetActive(false);
-        PauseController.SetPaused(false);   
+        PauseController.SetPaused(false);
     }
 
 }
