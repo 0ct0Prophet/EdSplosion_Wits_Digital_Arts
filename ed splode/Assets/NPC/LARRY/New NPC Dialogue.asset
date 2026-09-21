@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: New NPC Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::NpcDialogue
   npcName: Larry
+  npcPotrait: {fileID: 0}
   dialogueLines:
   - 'Hey missy, funny running into you while you''re causing such a ruckus. '
   - 'Well, I might as well help you out...keep it between us but I don''t like this
@@ -20,6 +21,6 @@ MonoBehaviour:
   - Now go finish what you started.
   autoProgressLine: 000101
   autoProgressDelay: 1.5
-  typingSpeed: 0.5
+  typingSpeed: 0.1
   voiceClips: []
   voicePitch: 2.07
