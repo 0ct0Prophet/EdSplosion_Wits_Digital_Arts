@@ -1,5 +1,5 @@
 using UnityEngine;
-public class Bullet : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     public float damage;
 
