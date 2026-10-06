@@ -16,17 +16,9 @@ public class PlayerBullet : MonoBehaviour
 
             Destroy(gameObject);
         }
-
-    if (collision.gameObject.CompareTag("Wall"))
-    {
-        print("hit a wall " + collision.gameObject.name + "!");
-        Destroy(gameObject);
-    }
-
-    if (collision.gameObject.CompareTag("Floor"))
-    {
-        print("hit the floor " + collision.gameObject.name + "!");
-        Destroy(gameObject);
-    }
+        else
+        {
+            Destroy(gameObject);
+        }
 }
     }

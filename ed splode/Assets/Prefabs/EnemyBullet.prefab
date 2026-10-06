@@ -30,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7531432363561532849}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.71888906, y: -0, z: -0, w: 0.69512486}
+  m_LocalRotation: {x: 0.5117424, y: 0.48820677, z: 0.5048972, w: 0.49482584}
   m_LocalPosition: {x: 3.74, y: 2.01, z: -3.5500002}
   m_LocalScale: {x: 0.46735582, y: 0.19611041, z: 0.64942294}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 91.925995, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 179.229, y: -89.974, z: -88.074005}
 --- !u!33 &1786500172125982829
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b2636e561456a428d8f47a1fde9a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  damage: 10
+  damage: 3
 --- !u!96 &2253760098612197624
 TrailRenderer:
   serializedVersion: 4
