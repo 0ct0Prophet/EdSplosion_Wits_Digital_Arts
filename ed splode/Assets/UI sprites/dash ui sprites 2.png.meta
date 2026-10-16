@@ -101,11 +101,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 199
-        y: 2944
+        y: 2957
         width: 1803
         height: 202
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 20, y: 16, z: 0, w: 0}
       customData: 
       outline: []
@@ -124,10 +124,10 @@ TextureImporter:
         serializedVersion: 2
         x: 166
         y: 2395
-        width: 1299
+        width: 1805
         height: 191
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 17, y: 0, z: 0, w: 11}
       customData: 
       outline: []
@@ -146,10 +146,10 @@ TextureImporter:
         serializedVersion: 2
         x: 143
         y: 1779
-        width: 771
+        width: 1783
         height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -158,6 +158,28 @@ TextureImporter:
       bones: []
       spriteID: d3751ff4529275640ae98d36cfe8fb8e
       internalID: 1039872960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dash ui sprites 2_3
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 1445
+        width: 1749
+        height: 188
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28aec4045582c68419b940e2ee40a8ae
+      internalID: -1796817532
       vertices: []
       indices: 
       edges: []
@@ -222,6 +244,7 @@ TextureImporter:
       dash ui sprites 2_0: -2117170387
       dash ui sprites 2_1: -1890416040
       dash ui sprites 2_2: 1039872960
+      dash ui sprites 2_3: -1796817532
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
