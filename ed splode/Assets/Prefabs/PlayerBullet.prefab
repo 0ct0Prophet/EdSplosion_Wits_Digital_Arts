@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.5117424, y: 0.48820677, z: 0.5048972, w: 0.49482584}
   m_LocalPosition: {x: 3.74, y: 2.01, z: -3.5500002}
-  m_LocalScale: {x: 0.46735582, y: 0.19611041, z: 0.64942294}
+  m_LocalScale: {x: 0.46735582, y: 0.3937701, z: 0.64942294}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,7 +44,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7531432363561532849}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &531194708192466682
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: c581471170698ae418d80b8522e25910, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -224,7 +224,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.7735849, g: 0.055951044, b: 0.055951044, a: 1}
+      key0: {r: 0.8490566, g: 0.6081882, b: 0, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

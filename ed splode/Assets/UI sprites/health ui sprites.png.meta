@@ -1,0 +1,419 @@
+fileFormatVersion: 2
+guid: f22d9f109b2a467488bf11e9350a7433
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: health ui sprites_0
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 3851
+        width: 2290
+        height: 373
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 1108.247, y: -166.86626}
+        - {x: 1140.0992, y: -149.88188}
+        - {x: 1140.0992, y: 140.97556}
+        - {x: 1133.7288, y: 151.59079}
+        - {x: -588.4189, y: 151.59079}
+        - {x: -989.7579, y: 115.498985}
+        - {x: -1019.4867, y: 53.930626}
+        - {x: -1032.2277, y: -145.63579}
+        - {x: -1032.2277, y: -181.72758}
+        - {x: 929.8741, y: -181.72758}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 320c273660f08ff44b780366d4349912
+      internalID: 425341672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health ui sprites_1
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 612
+        width: 1457
+        height: 520
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 513.8184, y: -173.52734}
+        - {x: 547.7942, y: -46.144524}
+        - {x: 547.7942, y: 125.82228}
+        - {x: 526.5593, y: 242.58986}
+        - {x: 377.91525, y: 242.58986}
+        - {x: -167.82083, y: 161.91408}
+        - {x: -613.75305, y: 96.099625}
+        - {x: -613.75305, y: -137.43555}
+        - {x: -299.47702, y: -237.21875}
+        - {x: 454.36078, y: -237.21875}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ccff57e2fa22a449bd3752fcfd9ae80
+      internalID: 1686224070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health ui sprites_2
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 166
+        width: 913
+        height: 391
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 275.33295, y: 75.770485}
+        - {x: 275.33295, y: 107.61619}
+        - {x: 266.839, y: 139.46188}
+        - {x: 224.36926, y: 139.46188}
+        - {x: 173.40558, y: 90.63181}
+        - {x: 173.40558, y: 50.29392}
+        - {x: 198.88742, y: 50.29392}
+      - - {x: 145.80026, y: -96.19629}
+        - {x: 145.80026, y: 92.75486}
+        - {x: 107.5775, y: 103.370094}
+        - {x: -344.72516, y: 103.370094}
+        - {x: -361.71307, y: 101.24705}
+        - {x: -361.71307, y: -47.366207}
+        - {x: -346.84866, y: -136.53418}
+        - {x: 73.60171, y: -136.53418}
+      - - {x: 349.65497, y: 18.448214}
+        - {x: 349.65497, y: 56.66306}
+        - {x: 330.5436, y: 60.909153}
+        - {x: 311.43222, y: 60.909153}
+        - {x: 305.06177, y: 52.416965}
+        - {x: 305.06177, y: 31.186495}
+        - {x: 317.80267, y: 14.20212}
+        - {x: 347.5315, y: 14.20212}
+      - - {x: 268.9625, y: -34.627926}
+        - {x: 268.9625, y: 3.5868855}
+        - {x: 247.72762, y: 16.325167}
+        - {x: 205.25789, y: 16.325167}
+        - {x: 186.1465, y: -0.659176}
+        - {x: 186.1465, y: -13.397458}
+        - {x: 211.62834, y: -40.997066}
+        - {x: 260.46854, y: -40.997066}
+      - - {x: 360.2724, y: -96.19629}
+        - {x: 364.51938, y: -91.950195}
+        - {x: 364.51938, y: -55.858395}
+        - {x: 360.2724, y: -47.366207}
+        - {x: 317.80267, y: -47.366207}
+        - {x: 311.43222, y: -57.98144}
+        - {x: 311.43222, y: -81.33496}
+        - {x: 339.03754, y: -100.44238}
+        - {x: 353.90195, y: -100.44238}
+      - - {x: 268.9625, y: -159.8877}
+        - {x: 283.8269, y: -136.53418}
+        - {x: 283.8269, y: -102.56543}
+        - {x: 268.9625, y: -77.08887}
+        - {x: 198.88742, y: -60.10449}
+        - {x: 158.54118, y: -60.10449}
+        - {x: 158.54118, y: -81.33496}
+        - {x: 245.60413, y: -164.13379}
+        - {x: 260.46854, y: -164.13379}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1b6e7cde7b02eb4dbbdce005ed16d6a
+      internalID: -1495836107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health ui sprites_3
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 1170
+        width: 1656
+        height: 551
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 783.8704, y: -88.966866}
+        - {x: 783.8704, y: 189.15228}
+        - {x: 728.6598, y: 235.85931}
+        - {x: -127.10534, y: 235.85931}
+        - {x: -776.8923, y: 142.44525}
+        - {x: -776.8923, y: -135.67389}
+        - {x: -258.7615, y: -254.56453}
+        - {x: 599.12714, y: -254.56453}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 409f8c458069c2842ac7c2b56030d6bf
+      internalID: 512658640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health ui sprites_4
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 1707
+        width: 2039
+        height: 457
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 886.57745, y: -188.88095}
+        - {x: 969.39343, y: -118.8204}
+        - {x: 969.39343, y: 222.99016}
+        - {x: -799.47095, y: 222.99016}
+        - {x: -858.9286, y: 161.4218}
+        - {x: -858.9286, y: -171.89658}
+        - {x: -466.08356, y: -193.12704}
+        - {x: 822.87286, y: -193.12704}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 014b1b1e8bec4734ab4898ddcf547f1f
+      internalID: 1770315702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health ui sprites_5
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 2177
+        width: 2123
+        height: 509
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 1008.56537, y: -114.829056}
+        - {x: 1008.56537, y: 220.61237}
+        - {x: 222.8753, y: 220.61237}
+        - {x: -520.34503, y: 193.01274}
+        - {x: -1010.8704, y: 69.87603}
+        - {x: -1010.8704, y: -195.50484}
+        - {x: -1008.74695, y: -206.12007}
+        - {x: -537.33295, y: -250.70406}
+        - {x: 791.9697, y: -250.70406}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d053e4500180f63448843f1d9fc339eb
+      internalID: -856560364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health ui sprites_6
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 2679
+        width: 2503
+        height: 562
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 1235.816, y: -127.66815}
+        - {x: 1235.816, y: 271.46466}
+        - {x: -286.72397, y: 271.46466}
+        - {x: -1165.8474, y: 152.57404}
+        - {x: -1172.2179, y: 46.421696}
+        - {x: -1172.2179, y: -178.62128}
+        - {x: -715.6683, y: -238.06659}
+        - {x: 1031.9613, y: -238.06659}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a2ccb7176d96cd408fccdf503b8fad2
+      internalID: -1897034766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: health ui sprites_7
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 3262
+        width: 2708
+        height: 613
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline:
+      - - {x: 1191.2858, y: 28.599453}
+        - {x: 1191.2858, y: 306.5}
+        - {x: 494.7821, y: 306.5}
+        - {x: -1150.92, y: 88.04477}
+        - {x: -1189.1428, y: -62.691566}
+        - {x: -1189.1428, y: -245.2736}
+        - {x: -159.25179, y: -306.5}
+        - {x: 1008.6659, y: -306.5}
+      - - {x: -212.33894, y: 300.34946}
+        - {x: -210.21545, y: 306.5}
+        - {x: -210.21545, y: 306.5}
+        - {x: -1206.1307, y: 306.5}
+        - {x: -1206.1307, y: 298.2264}
+        - {x: -972.5472, y: 285.48813}
+        - {x: -401.32925, y: 285.48813}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aa823e8a5477f94bbe8b952ca4616c5
+      internalID: 353134015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      health ui sprites_0: 425341672
+      health ui sprites_1: 1686224070
+      health ui sprites_2: -1495836107
+      health ui sprites_3: 512658640
+      health ui sprites_4: 1770315702
+      health ui sprites_5: -856560364
+      health ui sprites_6: -1897034766
+      health ui sprites_7: 353134015
+      health ui sprites_8: -295090529
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
