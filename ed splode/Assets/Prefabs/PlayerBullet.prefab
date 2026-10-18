@@ -275,3 +275,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e01115be6a4b5dd4d9ecf8dfb8aa315e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBullet
+  Damage: 10
