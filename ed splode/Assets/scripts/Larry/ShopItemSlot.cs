@@ -40,15 +40,15 @@ public class ShopItemSlot : MonoBehaviour
 
     public void BuyItem()
     {
-        // Remove Coins
-      //  InventorySystem.Instance.currentCoins -= shopItemData.itemPrice;
+        //// Remove Coins
+        //InventorySystem.Instance.currentCoins -= shopItemData.itemPrice;
 
-        // Get inventory item Name
-        InventoryItem inventoryItem = shopItemData.inventoryItem.GetComponent<InventoryItem>();
+        //// Get inventory item Name
+        //InventoryItem inventoryItem = shopItemData.inventoryItem.GetComponent<InventoryItem>();
 
-        // Add items into inventory
-        InventorySystem.Instance.AddToInventory(inventoryItem.thisName, true);
+        //// Add items into inventory
+        //InventorySystem.Instance.AddToInventory(inventoryItem.thisName, true);
 
-        Debug.Log("Bought " + inventoryItem.thisName);
+        //Debug.Log("Bought " + inventoryItem.thisName);
     }
 }

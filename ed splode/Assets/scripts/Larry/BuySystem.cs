@@ -39,15 +39,15 @@ public class BuySystem : MonoBehaviour
     {
         backButton.onClick.AddListener(ExitBuyMode);
 
-        // Set list of items based on seasons / events
-        if (TimeManager.Instance.currentSeason == TimeManager.Season.Spring)
-        {
-            // Set spring list as our list
-            currentShopList = springList;
+        ////Set list of items based on seasons / events
+        //if (TimeManager.Instance.currentSeason == TimeManager.Season.Spring)
+        //{
+        //    // Set spring list as our list
+        //    currentShopList = springList;
 
-            // Initialize list
-            InitializeBuyList(currentShopList);
-        }
+        //    // Initialize list
+        //    InitializeBuyList(currentShopList);
+        //}
 
     }
 
@@ -55,24 +55,24 @@ public class BuySystem : MonoBehaviour
     {
 
 
-        foreach (ShopItemData listItem in shopList)
-        {
-            GameObject prefab = Instantiate(shopItemPrefab, contentTransform);
+        //foreach (ShopItemData listItem in shopList)
+        //{
+        //    GameObject prefab = Instantiate(shopItemPrefab, contentTransform);
 
-            ShopItemSlot shopItemSlot = prefab.GetComponent<ShopItemSlot>();
+        //    ShopItemSlot shopItemSlot = prefab.GetComponent<ShopItemSlot>();
 
-            InventoryItem inventoryItem = listItem.inventoryItem.GetComponent<InventoryItem>();
+        //    InventoryItem inventoryItem = listItem.inventoryItem.GetComponent<InventoryItem>();
 
-            // Set the actual data
-            shopItemSlot.shopItemData = listItem;
+        //    // Set the actual data
+        //    shopItemSlot.shopItemData = listItem;
 
-            // Setting the Name
-            shopItemSlot.itemNameUI.text = inventoryItem.thisName;
-            // Setting the Sprite
-            shopItemSlot.itemImageUI.sprite = listItem.inventoryItem.GetComponent<Image>().sprite;
-            // Setting the Price
-            shopItemSlot.itemPriceUI.text = $"{listItem.itemPrice}";
-        }
+        //    // Setting the Name
+        //    shopItemSlot.itemNameUI.text = inventoryItem.thisName;
+        //    // Setting the Sprite
+        //    shopItemSlot.itemImageUI.sprite = listItem.inventoryItem.GetComponent<Image>().sprite;
+        //    // Setting the Price
+        //    shopItemSlot.itemPriceUI.text = $"{listItem.itemPrice}";
+        //}
     }
 
     public void ExitBuyMode()
