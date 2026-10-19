@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float dashSpeed = 40f;
     [SerializeField] private float DashDecaySpeed = -10f;
     [SerializeField] private float dashCooldown = 5f;
-    
+
 
     [Header("References")] //references to the player and the character controller
     [SerializeField] private Transform cameraTransform;
@@ -65,6 +65,8 @@ public class Movement : MonoBehaviour
 
     }
 
+   
+
 
 
     private void StoreMovementInput(InputAction.CallbackContext context) //store the movement input from the player
@@ -79,16 +81,14 @@ public class Movement : MonoBehaviour
             _verticalVelocity = jumpForce;
             _canDoubleJump = true;
         }
-        else if(_canDoubleJump)//if in the air and double jump is available, disables double jumo if pressed
+        else if (_canDoubleJump)//if in the air and double jump is available, disables double jumo if pressed
         {
             _verticalVelocity = jumpForce;
             _canDoubleJump = false;
         }
     }
 
- 
-
-private void Dash(InputAction.CallbackContext context) //makes the player dash
+    private void Dash(InputAction.CallbackContext context) //makes the player dash
     {
         if (!_isDashing && _dashCooldownTimer <= 0)//checks if the player is already dashing and if timer is at 0.
         {
@@ -105,6 +105,12 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
 
     private void Update()
     {
+        if (MovementManager.Instance.canMove) 
+        {
+            HandleGravity();
+            HandleDash();
+            HandleMovement();
+        }
         _isGrounded = _characterController.isGrounded;//checks if the player is on the ground
         HandleGravity();
         HandleDash();
@@ -129,7 +135,7 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
             walkspeed = _horizontalVelocity;
             _isDashing = false;
         }
-        else if( walkspeed <= _horizontalVelocity)
+        else if (walkspeed <= _horizontalVelocity)
         {
             walkspeed = _horizontalVelocity;
         }
@@ -146,13 +152,13 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
     {
         Vector3 move = cameraTransform.TransformDirection(new Vector3(_moveInput.x, 0f, _moveInput.y)).normalized;
         float currentSpeed = walkspeed;
-       
+
         Vector3 finalMove = move * currentSpeed;
         finalMove.y = _verticalVelocity;
 
         CollisionFlags collisions = _characterController.Move(motion: finalMove * Time.deltaTime);
 
-        if((collisions &CollisionFlags.Above) !=0) //prevents floating in air before falling
+        if ((collisions & CollisionFlags.Above) != 0) //prevents floating in air before falling
         {
             _verticalVelocity = initialFallVelocity;
         }
@@ -168,7 +174,5 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
             if (sb != null) sb.PickUp(player: other);
         }
     }
-
-
-
 }
+
