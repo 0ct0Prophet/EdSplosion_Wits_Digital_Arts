@@ -56,26 +56,27 @@ public class LarrysShop : MonoBehaviour
 
 
 
-    private void BuyMode()
+    public void BuyMode()
     {
+        HideDialogueUi();
         buyPanelUI.SetActive(true);
 
-        HideDialogueUi();
     }
 
     public void DialogueMode()
     {
         DisplayDialogueUi();
-        buyPanelUI.SetActive(false);
     }
 
     private void HideDialogueUi()
     {
         shopDialogue.SetActive(false);
+
     }
 
     private void DisplayDialogueUi()
     {
+        buyPanelUI.SetActive(false);
         shopDialogue.SetActive(true);
     }
 
