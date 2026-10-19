@@ -86,7 +86,6 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(float amount)
     {
         currentHealth -= amount;
-        healthBar.SetSlider(currentHealth);
         if (currentHealth <= 0)
         {
             FindFirstObjectByType<GameOverManager>().GameOver();
