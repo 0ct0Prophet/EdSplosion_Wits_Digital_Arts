@@ -11,19 +11,22 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/gameplay scene.unity
     guid: c61329befd237e04d9119290f14ef7ed
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/place to carry over scene/environment.unity
     guid: 2b0b8730866002a4a9e9dc18b020abf4
   - enabled: 1
+    path: Assets/Scenes/LEVEL_01.unity
+    guid: 29d77f776ac8ea44e91ac0eea76a9b47
+  - enabled: 0
     path: Assets/Scenes/SHOP_01.unity
     guid: 01e087682b1ffd346a7fd4aa4b29a246
   - enabled: 1
     path: Assets/Scenes/LEVEL_02.unity
-    guid: 248344ab8316f5744887243cc0d42bd8
-  - enabled: 1
+    guid: 395a3f0336d256244bbed69e3d05601d
+  - enabled: 0
     path: Assets/Scenes/SHOP_02.unity
     guid: 6957bf0b181907045a6ca85a5cbc3da9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LEVEL_03.unity
     guid: 245909ccc20df944795c9de1b52f16bc
   m_configObjects:

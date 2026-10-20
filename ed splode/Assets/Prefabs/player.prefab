@@ -680,7 +680,7 @@ MonoBehaviour:
   shootForce: 25
   upwardForce: 1
   timeBetweenShooting: 0.4
-  spread: 1
+  spread: 0
   reloadTime: 2
   timeBetweenShots: 1
   magazineSize: 15
