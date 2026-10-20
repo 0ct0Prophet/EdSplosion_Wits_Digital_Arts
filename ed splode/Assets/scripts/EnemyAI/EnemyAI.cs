@@ -13,6 +13,7 @@ public class EnemyAi : MonoBehaviour
     public Color normalColour;
     public Color hitColour = Color.red;
     public GameObject deathEffect;
+    public Transform projectileSpawn;
 
     //looking around
     public Vector3 walkPoint;
@@ -26,14 +27,20 @@ public class EnemyAi : MonoBehaviour
     //states
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+
     IEnumerator FlashRed()
-    {
-        enemyRenderer.material.color = hitColour;
+        {
+            Material material = enemyRenderer.materials[1];
 
-        yield return new WaitForSeconds(0.2f);
+            Color originalColour = material.color;
 
-        enemyRenderer.material.color = normalColour;
-    }
+            material.color = hitColour;
+
+            yield return new WaitForSeconds(0.2f);
+
+            material.color = originalColour;
+        }
+
     private void Awake()
     {
         player = GameObject.Find("player").transform;
@@ -92,14 +99,31 @@ public class EnemyAi : MonoBehaviour
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player.position);
+       Vector3 lookPosition = player.position;lookPosition.y = transform.position.y;transform.LookAt(lookPosition);
 
     
         if (!alreadyAttacked)
     {
     ///ATTACK CODE!!
-      Rigidbody rb = Instantiate(enemyWeapon,transform.position + transform.forward, Quaternion.identity).GetComponent<Rigidbody>();
-    rb.AddForce((player.position - transform.position).normalized * 32f, ForceMode.Impulse);
+    Rigidbody rb = Instantiate(enemyWeapon, projectileSpawn.position, Quaternion.identity).GetComponent<Rigidbody>();     
+    
+    Collider bulletCollider = rb.GetComponent<Collider>();
+
+        if (bulletCollider != null)
+    {
+        Collider[] enemyColliders = GetComponentsInChildren<Collider>();
+
+        foreach (Collider enemyCollider in enemyColliders)
+        {
+            Physics.IgnoreCollision(bulletCollider, enemyCollider);
+        }
+    }
+
+
+rb.AddForce(
+    (player.position - projectileSpawn.position).normalized * 32f,
+    ForceMode.Impulse
+);
 
       alreadyAttacked = true;
       Invoke(nameof(ResetAttack), timeBetweenAttacks);

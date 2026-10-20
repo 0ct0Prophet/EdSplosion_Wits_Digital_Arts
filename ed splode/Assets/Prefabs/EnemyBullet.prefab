@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8165034988566345989}
   - component: {fileID: 1786500172125982829}
   - component: {fileID: 531194708192466682}
+  - component: {fileID: -8453337997768055964}
   - component: {fileID: 2235977747329371999}
   - component: {fileID: 7343651335619211130}
-  - component: {fileID: 8283455747776855944}
   - component: {fileID: 2253760098612197624}
   m_Layer: 0
   m_Name: EnemyBullet
@@ -94,6 +94,20 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-8453337997768055964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7531432363561532849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19b2636e561456a428d8f47a1fde9a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyProjectile
+  damage: 10
+  lifetime: 5
 --- !u!136 &2235977747329371999
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -144,19 +158,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &8283455747776855944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7531432363561532849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19b2636e561456a428d8f47a1fde9a3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  damage: 3
 --- !u!96 &2253760098612197624
 TrailRenderer:
   serializedVersion: 4
