@@ -80,12 +80,6 @@ public class Movement : MonoBehaviour
         if (_isGrounded)//if on the ground, jump and allow double jump
         {
             _verticalVelocity = jumpForce;
-            _canDoubleJump = true;
-        }
-        else if(_canDoubleJump)//if in the air and double jump is available, disables double jumo if pressed
-        {
-            _verticalVelocity = jumpForce;
-            _canDoubleJump = false;
         }
     }
 

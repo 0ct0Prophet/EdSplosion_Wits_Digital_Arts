@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gun
   bullet: {fileID: 7531432363561532849, guid: 9cd7c343bf9ba0648b658fcd7f36a8c0, type: 3}
-  shootForce: 50
+  shootForce: 30
   upwardForce: 1
   timeBetweenShooting: 0.1
   spread: 1
