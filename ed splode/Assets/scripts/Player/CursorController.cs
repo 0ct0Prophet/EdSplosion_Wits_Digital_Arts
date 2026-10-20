@@ -14,14 +14,13 @@ public class CursorController : MonoBehaviour
     //hides the cursor and locks it to the center of the screen
     public void Start()
     {
-        Cursor.lockState = CursorLockMode.None;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     private void Update()
     {
-        if (!MovementManager.Instance.canLook)  return;
+        if (MovementManager.Instance.canLook == false)  return;
         {
 
             Vector2 mouseDelta;

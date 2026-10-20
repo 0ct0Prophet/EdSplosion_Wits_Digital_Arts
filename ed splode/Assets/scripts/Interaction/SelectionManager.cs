@@ -30,12 +30,17 @@ public class SelectionManager : MonoBehaviour
             #region || --- Shop Interaction --- ||
             LarrysShop shop = selectionTransform.GetComponent<LarrysShop>();
 
-            if (shop && shop.playerInRange)
+            if (shop != null && shop.playerInRange)
             {
                 if (shop.talkingWithPLayer == false)
                 {
                     interaction_text.text = "Talk";
                     interaction_Info_UI.SetActive(true);
+
+                    if (Mouse.current.leftButton.wasPressedThisFrame && shop.talkingWithPLayer == false)
+                    {
+                        shop.Interact();
+                    }
                 }
                 else
                 {
@@ -44,10 +49,7 @@ public class SelectionManager : MonoBehaviour
                 }
             }
 
-            if (Mouse.current.leftButton.wasPressedThisFrame && shop.talkingWithPLayer == false)
-            {
-                shop.Interact();
-            }
+            
 
             #endregion || --- Shop Interaction --- ||
 

@@ -10,6 +10,7 @@ public class LarrysShop : MonoBehaviour
     public GameObject shopDialogue;
     public Button closeButton;
     public Button buyButton;
+    public GameObject healthBar;
 
     public GameObject buyPanelUI;
 
@@ -45,6 +46,7 @@ public class LarrysShop : MonoBehaviour
 
         // Close shop UI
         HideDialogueUi();
+        healthBar.SetActive(true);
 
         MovementManager.Instance.EnableMovement(true);
         MovementManager.Instance.EnableLookOnly(true);
@@ -71,11 +73,11 @@ public class LarrysShop : MonoBehaviour
     private void HideDialogueUi()
     {
         shopDialogue.SetActive(false);
-
     }
 
     private void DisplayDialogueUi()
     {
+        healthBar.SetActive(false);
         buyPanelUI.SetActive(false);
         shopDialogue.SetActive(true);
     }
