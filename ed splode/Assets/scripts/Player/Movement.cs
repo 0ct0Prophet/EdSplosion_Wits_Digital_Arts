@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.ProBuilder.MeshOperations;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -39,7 +41,8 @@ public class Movement : MonoBehaviour
     private float _horizontalVelocity;
     private float _dashCooldownTimer = 0f;
 
-    public TextMeshProUGUI dashTimer;
+ 
+    public DashBar dashBar;
 
     private void Awake()
     {
@@ -92,11 +95,13 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
     {
         if (!_isDashing && _dashCooldownTimer <= 0)//checks if the player is already dashing and if timer is at 0.
         {
+            dashBar.SetDashSprite(3);//sets the dash bar to empty
             walkspeed = dashSpeed;//increase speed to dash speed
             _isDashing = true;
             _dashCooldownTimer = dashCooldown;//resets the cooldown timer
         }
     }
+
 
     public void Start()
     {
@@ -109,7 +114,26 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
         HandleGravity();
         HandleDash();
         HandleMovement();
-        dashTimer.text = "Dash ready in: " + _dashCooldownTimer.ToString("F1");//displays the cooldown timer on the UI
+
+        if (_dashCooldownTimer <= dashCooldown * 0.2f)
+        {
+            dashBar.SetDashSprite(0);
+        }
+        else if (_dashCooldownTimer <= dashCooldown * 0.5f)
+        {
+            dashBar.SetDashSprite(1);
+        }
+        else if (_dashCooldownTimer <= dashCooldown *0.75f)
+        {
+            dashBar.SetDashSprite(2);
+        }
+        else if (_dashCooldownTimer >= dashCooldown)
+        {
+            dashBar.SetDashSprite(3);
+        }
+
+
+
     }
 
     private void HandleGravity() //creates gravithy that makes the player fall back to the ground
