@@ -51,6 +51,12 @@ public class EnemyAi : MonoBehaviour
 
     private void Update()
     {
+        if (health <= 0)
+        {   
+            agent.isStopped = true;
+             return;
+        }
+        
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
