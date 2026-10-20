@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/gameplay scene.unity
     guid: c61329befd237e04d9119290f14ef7ed
   - enabled: 1
-    path: Assets/Scenes/LEVEL_01.unity
+    path: Assets/Scenes/place to carry over scene/environment.unity
     guid: 2b0b8730866002a4a9e9dc18b020abf4
   - enabled: 1
     path: Assets/Scenes/SHOP_01.unity

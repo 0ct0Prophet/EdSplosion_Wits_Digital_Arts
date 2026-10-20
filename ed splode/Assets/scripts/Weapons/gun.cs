@@ -168,7 +168,9 @@ public class gun : MonoBehaviour
     {
         ChangeAnimation("reload");
         if (reloadSmoke != null)
+        {
             Instantiate(reloadSmoke, attackPoint.position, Quaternion.identity);
+        }
         reloading = true;
         Invoke("ReloadFinished", reloadTime);
     }
