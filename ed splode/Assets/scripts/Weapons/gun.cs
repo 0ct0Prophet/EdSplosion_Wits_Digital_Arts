@@ -24,6 +24,11 @@ public class gun : MonoBehaviour
     public Animator animator;
     private string currentAnimation;
 
+    //sound 
+    [SerializeField] private AudioClip shootSound;
+    [SerializeField] private AudioClip reloadSound;
+    [SerializeField] private AudioSource sounds;
+
     //bools
     public bool shooting, readyToShoot, reloading;
 
@@ -35,7 +40,7 @@ public class gun : MonoBehaviour
     public GameObject muzzleFlash, bulletHoleGraphic, reloadSmoke;
     public TextMeshProUGUI ammunitionDisplay;
 
-    //bug fixing nigga
+    //bug fixing 
     public bool allowInvoke = true;
 
     private void Awake()
@@ -43,6 +48,8 @@ public class gun : MonoBehaviour
         //makes sure magazine is full
         bulletsLeft = magazineSize;
         readyToShoot = true;
+        sounds = GetComponent<AudioSource>();
+
     }
 
     private void Update()
@@ -88,6 +95,8 @@ public class gun : MonoBehaviour
         {
             //Set bullets shot to 0
             bulletsShot = 0;
+            sounds.clip = shootSound;
+            sounds.Play();
             ChangeAnimation("shoot");
             Shoot();
             
@@ -167,6 +176,9 @@ public class gun : MonoBehaviour
     private void Reload()
     {
         ChangeAnimation("reload");
+        sounds.time = 0.1f;
+        sounds.clip = reloadSound;
+        sounds.Play();
         if (reloadSmoke != null)
         {
             Instantiate(reloadSmoke, attackPoint.position, Quaternion.identity);
