@@ -678,6 +678,7 @@ MonoBehaviour:
   allowButtonHold: 0
   playerRB: {fileID: 6661353001517928361}
   recoilForce: 0
+  animator: {fileID: 0}
   shooting: 0
   readyToShoot: 0
   reloading: 0
@@ -685,6 +686,7 @@ MonoBehaviour:
   attackPoint: {fileID: 3759840593609888105}
   muzzleFlash: {fileID: 8355022340027892298}
   bulletHoleGraphic: {fileID: 0}
+  reloadSmoke: {fileID: 0}
   ammunitionDisplay: {fileID: 0}
   allowInvoke: 1
 --- !u!95 &661572676205167444

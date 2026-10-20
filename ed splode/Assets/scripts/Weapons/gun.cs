@@ -32,7 +32,7 @@ public class gun : MonoBehaviour
     public Transform attackPoint;
 
     //Graphics
-    public GameObject muzzleFlash, bulletHoleGraphic;
+    public GameObject muzzleFlash, bulletHoleGraphic, reloadSmoke;
     public TextMeshProUGUI ammunitionDisplay;
 
     //bug fixing nigga
@@ -63,10 +63,7 @@ public class gun : MonoBehaviour
             animator.Play(animationName);
     }
     
-    private void CheckAnimation()
-    {
-
-    }
+ 
 
     private void MyInput()
     {
@@ -169,11 +166,15 @@ public class gun : MonoBehaviour
 
     private void Reload()
     {
+        ChangeAnimation("reload");
+        if (reloadSmoke != null)
+            Instantiate(reloadSmoke, attackPoint.position, Quaternion.identity);
         reloading = true;
         Invoke("ReloadFinished", reloadTime);
     }
     private void ReloadFinished()
     {
+        ChangeAnimation("idle");
         bulletsLeft = magazineSize;
         reloading = false;
     }
