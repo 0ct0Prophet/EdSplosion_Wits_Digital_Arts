@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    [SerializeField] private int Damage = 10;
   private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -11,15 +10,23 @@ public class PlayerBullet : MonoBehaviour
 
             if (enemy != null)
             {
-                enemy.TakeDamage(Damage);
-                Debug.Log("Enemy took " + Damage + " damage! Health remaining: " + enemy.health);
+                enemy.TakeDamage(10);
+                Debug.Log("Enemy took 10 damage! Health remaining: " + enemy.health);
             }
 
             Destroy(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+
+    if (collision.gameObject.CompareTag("Wall"))
+    {
+        print("hit a wall " + collision.gameObject.name + "!");
+        Destroy(gameObject);
+    }
+
+    if (collision.gameObject.CompareTag("Floor"))
+    {
+        print("hit the floor " + collision.gameObject.name + "!");
+        Destroy(gameObject);
+    }
 }
     }
