@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
@@ -14,6 +15,7 @@ public class EnemyAi : MonoBehaviour
     public Color hitColour = Color.red;
     public GameObject deathEffect;
     public Transform projectileSpawn;
+    public Transform deathEffectSpawn;
 
     //looking around
     public Vector3 walkPoint;
@@ -29,17 +31,17 @@ public class EnemyAi : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
 
     IEnumerator FlashRed()
-        {
-            Material material = enemyRenderer.materials[1];
+    {
+        Material material = enemyRenderer.materials[1];
 
-            Color originalColour = material.color;
+        Color originalColour = material.color;
 
-            material.color = hitColour;
+        material.color = hitColour;
 
-            yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.2f);
 
-            material.color = originalColour;
-        }
+        material.color = originalColour;
+    }
 
     private void Awake()
     {
@@ -99,35 +101,39 @@ public class EnemyAi : MonoBehaviour
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
-       Vector3 lookPosition = player.position;lookPosition.y = transform.position.y;transform.LookAt(lookPosition);
+        Vector3 lookPosition = player.position;
+        lookPosition.y = transform.position.y;
+        transform.LookAt(lookPosition);
 
-    
         if (!alreadyAttacked)
-    {
-    ///ATTACK CODE!!
-    Rigidbody rb = Instantiate(enemyWeapon, projectileSpawn.position, Quaternion.identity).GetComponent<Rigidbody>();     
-    
-    Collider bulletCollider = rb.GetComponent<Collider>();
-
-        if (bulletCollider != null)
-    {
-        Collider[] enemyColliders = GetComponentsInChildren<Collider>();
-
-        foreach (Collider enemyCollider in enemyColliders)
         {
-            Physics.IgnoreCollision(bulletCollider, enemyCollider);
+            ///ATTACK CODE!!
+            Rigidbody rb = Instantiate(
+                enemyWeapon,
+                projectileSpawn.position,
+                Quaternion.identity
+            ).GetComponent<Rigidbody>();
+
+            Collider bulletCollider = rb.GetComponent<Collider>();
+
+            if (bulletCollider != null)
+            {
+                Collider[] enemyColliders = GetComponentsInChildren<Collider>();
+
+                foreach (Collider enemyCollider in enemyColliders)
+                {
+                    Physics.IgnoreCollision(bulletCollider, enemyCollider);
+                }
+            }
+
+            rb.AddForce(
+                (player.position - projectileSpawn.position).normalized * 32f,
+                ForceMode.Impulse
+            );
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-    }
-
-
-rb.AddForce(
-    (player.position - projectileSpawn.position).normalized * 32f,
-    ForceMode.Impulse
-);
-
-      alreadyAttacked = true;
-      Invoke(nameof(ResetAttack), timeBetweenAttacks);
-    }
     }
 
     private void ResetAttack()
@@ -143,8 +149,8 @@ rb.AddForce(
 
         if (health <= 0)
         {
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
-            Invoke(nameof(DestroyEnemy), 0.1f);
+            Instantiate(deathEffect, deathEffectSpawn.position, Quaternion.identity);
+            Invoke(nameof(DestroyEnemy), 3f);
         }
     }
 
@@ -152,6 +158,4 @@ rb.AddForce(
     {
         Destroy(gameObject);
     }
-
 }
-
