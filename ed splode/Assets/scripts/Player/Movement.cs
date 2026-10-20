@@ -28,7 +28,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference jumpAction;
     [SerializeField] private InputActionReference dashAction;
-
+    [SerializeField] private Rigidbody playeRigidbody;
 
     //check if characters are performing an action
     private CharacterController _characterController;
@@ -89,10 +89,17 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
     {
         if (!_isDashing && _dashCooldownTimer <= 0)//checks if the player is already dashing and if timer is at 0.
         {
-            dashBar.SetDashSprite(3);//sets the dash bar to empty
-            walkspeed = dashSpeed;//increase speed to dash speed
-            _isDashing = true;
-            _dashCooldownTimer = dashCooldown;//resets the cooldown timer
+            if (_horizontalVelocity <= walkspeed)
+            {
+                playeRigidbody.AddForce(transform.forward * dashSpeed, ForceMode.VelocityChange);//adds force to the player in the direction they are facing
+            }
+            else
+            {
+                dashBar.SetDashSprite(3);//sets the dash bar to empty
+                walkspeed = dashSpeed;//increase speed to dash speed
+                _isDashing = true;
+                _dashCooldownTimer = dashCooldown;//resets the cooldown timer
+            }
         }
     }
 

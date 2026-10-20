@@ -20,6 +20,9 @@ public class gun : MonoBehaviour
     public Rigidbody playerRB;
     public float recoilForce;
 
+    //animator
+    public Animator animator;
+    private string currentAnimation;
 
     //bools
     public bool shooting, readyToShoot, reloading;
@@ -53,6 +56,18 @@ public class gun : MonoBehaviour
         }
     }
 
+    private void ChangeAnimation(string animationName)
+    {
+
+            currentAnimation = animationName;
+            animator.Play(animationName);
+    }
+    
+    private void CheckAnimation()
+    {
+
+    }
+
     private void MyInput()
     {
         //Check if allowed to hold down button and take corresponding action
@@ -76,8 +91,9 @@ public class gun : MonoBehaviour
         {
             //Set bullets shot to 0
             bulletsShot = 0;
-
+            ChangeAnimation("shoot");
             Shoot();
+            
 
         }
     }
