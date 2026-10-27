@@ -1150,7 +1150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAi
   agent: {fileID: 3959758535881333833}
-  player: {fileID: 0}
+  player: {fileID: 5080781503142609437, guid: 8fc88bf77ef4ef148a1e2aebe4a4667f, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128

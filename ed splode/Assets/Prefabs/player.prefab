@@ -338,7 +338,7 @@ MonoBehaviour:
   jumpForce: 5
   gravity: -15
   initialFallVelocity: -4
-  dashSpeed: 30
+  dashSpeed: 45
   DashDecaySpeed: -60
   dashCooldown: 5
   cameraTransform: {fileID: 7334894122774975552}
