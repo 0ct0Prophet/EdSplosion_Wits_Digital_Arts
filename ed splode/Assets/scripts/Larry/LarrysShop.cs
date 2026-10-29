@@ -35,7 +35,8 @@ public class LarrysShop : MonoBehaviour
         MovementManager.Instance.EnableMovement(false);
         MovementManager.Instance.EnableLookOnly(false);
 
-        MovementManager.Instance.canLook = false;
+        //MovementManager.Instance.canLook = false;
+        //MovementManager.Instance.canMove = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -51,7 +52,8 @@ public class LarrysShop : MonoBehaviour
         MovementManager.Instance.EnableMovement(true);
         MovementManager.Instance.EnableLookOnly(true);
 
-        MovementManager.Instance.canLook = true;
+        //MovementManager.Instance.canLook = true;
+        //MovementManager.Instance.canMove = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

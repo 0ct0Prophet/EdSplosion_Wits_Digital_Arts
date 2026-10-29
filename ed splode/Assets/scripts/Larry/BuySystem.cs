@@ -30,47 +30,136 @@ public class BuySystem : MonoBehaviour
     public Button backButton;
 
     [Header("Current List")]
-    public List<ShopItemData> currentShopList;
+    public List<ShopItemData> currentShopList = new List<ShopItemData>();
 
 
-
-    void Start()
+    public enum ItemType
     {
-        //backButton.onClick.AddListener(ExitBuyMode);
+        AttackBoost,
+        Healing,
+        SpeedBoost
+    }
 
-        ////Set list of items based on seasons / events
-        //if (TimeManager.Instance.currentSeason == TimeManager.Season.Spring)
-        //{
-        //    // Set spring list as our list
-        //    currentShopList = springList;
 
-        //    // Initialize list
-        //    InitializeBuyList(currentShopList);
-        //}
+    [System.Serializable]
+    public class ShopItemData
+    {
+        public string itemName;
+        public Sprite itemIcon;
+        public ItemType itemType;
+    }
 
+    private void Start()
+    {
+        if (backButton != null)
+        {
+            backButton.onClick.AddListener(ExitBuyMode);
+        }
+
+        InitializeBuyList(currentShopList);
     }
 
     private void InitializeBuyList(List<ShopItemData> shopList)
     {
+      
 
-
-        foreach (ShopItemData listItem in shopList)
+        // Clear existing slots to prevent duplicates.
+        foreach (Transform child in contentTransform)
         {
-            GameObject prefab = Instantiate(shopItemPrefab, contentTransform);
+            Destroy(child.gameObject);
+        }
 
-            ShopItemSlot shopItemSlot = prefab.GetComponent<ShopItemSlot>();
+        foreach (ShopItemData item in shopList)
+        {
+            if (item == null)
+                continue;
 
-            //InventoryItem inventoryItem = listItem.inventoryItem.GetComponent<InventoryItem>();
+            GameObject slotObject = Instantiate(
+                shopItemPrefab,
+                contentTransform
+            );
 
-            // Set the actual data
-            shopItemSlot.shopItemData = listItem;
+            ShopItemSlot slot = slotObject.GetComponent<ShopItemSlot>();
 
-            // Setting the Name
-            //shopItemSlot.itemNameUI.text = inventoryItem.thisName;
-            // Setting the Sprite
-            shopItemSlot.itemImageUI.sprite = listItem.inventoryItem.GetComponent<Image>().sprite;
-            // Setting the Price
-            shopItemSlot.itemPriceUI.text = $"{listItem.itemPrice}";
+            if (slot == null)
+            {
+                Debug.LogError("Shop item prefab is missing ShopItemSlot!");
+                Destroy(slotObject);
+                continue;
+            }
+
+            slot.Setup(item);
+        }
+    }
+
+    public void SelectItem(ShopItemData item)
+    {
+        if (item == null)
+        {
+            Debug.LogWarning("No item was selected.");
+            return;
+        }
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player == null)
+        {
+            Debug.LogError("Could not find a GameObject tagged Player.");
+            return;
+        }
+
+        bool effectApplied = false;
+
+        switch (item.itemType)
+        {
+            case ItemType.Healing:
+                {
+                    PlayerStats stats = player.GetComponent<PlayerStats>();
+
+                    if (stats != null)
+                    {
+                        stats.HealPercentage(0.3f);
+                        effectApplied = true;
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Player is missing PlayerStats.");
+                    }
+
+                    break;
+                }
+
+            case ItemType.SpeedBoost:
+                {
+                    Movement movement = player.GetComponent<Movement>();
+
+                    if (movement != null)
+                    {
+                        movement.ActivateSpeedBoost();
+                        effectApplied = true;
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Player is missing Movement.");
+                    }
+
+                    break;
+                }
+
+            case ItemType.AttackBoost:
+                {
+                    Debug.LogWarning(
+                        "Attack Boost needs to be connected to your damage system."
+                    );
+
+                    break;
+                }
+        }
+
+        if (effectApplied)
+        {
+            Debug.Log("Selected item: " + item.itemName);
+            ExitBuyMode();
         }
     }
 
@@ -79,10 +168,4 @@ public class BuySystem : MonoBehaviour
         ShopKeeper.DialogueMode();
     }
 
-    [System.Serializable]
-    public class ShopItemData
-    {
-        public GameObject inventoryItem;
-        public int itemPrice;
-    }
 }

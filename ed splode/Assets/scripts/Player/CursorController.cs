@@ -20,37 +20,35 @@ public class CursorController : MonoBehaviour
 
     private void Update()
     {
-        if (MovementManager.Instance.canLook == false)  return;
+        if (!MovementManager.Instance.canLook) return;
+
+        
+        Vector2 mouseDelta = mouseDelta = Mouse.current.delta.ReadValue();
+        if (Mouse.current != null)
         {
-
-            Vector2 mouseDelta;
-            if (Mouse.current != null)
-            {
-                mouseDelta = Mouse.current.delta.ReadValue();
-            }
-            else if(UnityEngine.Input.mousePresent)
-            {
-                mouseDelta = new Vector2(UnityEngine.Input.GetAxis("Mouse X"), UnityEngine.Input.GetAxis("Mouse Y"));
-            }
-
-            else
-            {
-                return;
-            }
-
-            float mouseX = mouseDelta.x * mouseSensitivityX * Time.deltaTime;
-            float mouseY = mouseDelta.y * mouseSensitivityY * Time.deltaTime;
-
-            //controls x axis rotation (left and right)
-            xRotation -= mouseY;
-            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-            //controls y axis rotation (up and down)
-            yRotation += mouseX;
-
-            //apllys both rotations
-            transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+            mouseDelta = Mouse.current.delta.ReadValue();
+        }
+        else if (UnityEngine.Input.mousePresent)
+        {
+            mouseDelta = new Vector2(UnityEngine.Input.GetAxis("Mouse X"), UnityEngine.Input.GetAxis("Mouse Y"));
         }
 
+        else
+        {
+            return;
+        }
+
+        float mouseX = mouseDelta.x * mouseSensitivityX * Time.deltaTime;
+        float mouseY = mouseDelta.y * mouseSensitivityY * Time.deltaTime;
+
+        //controls x axis rotation (left and right)
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+
+        //controls y axis rotation (up and down)
+        yRotation += mouseX;
+
+        //apllys both rotations
+        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
     }
 }

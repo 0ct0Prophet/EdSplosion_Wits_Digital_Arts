@@ -27,9 +27,31 @@ public class PlayerStats : MonoBehaviour
     {
         currentHealth -= amount;
         healthBar.SetSlider(currentHealth);
+        UpdateHealthBar();
         if (currentHealth <= 0)
         {
             FindFirstObjectByType<GameOverManager>().GameOver();
+        }
+    }
+
+    public void Heal(float amount)
+    {
+        currentHealth = Mathf.Min(maxHealth, currentHealth + amount);
+        UpdateHealthBar();
+
+        Debug.Log("Player healed. Current health: " + currentHealth);
+    }
+
+    public void HealPercentage(float percentage)
+    {
+        Heal(maxHealth * percentage);
+    }
+
+    private void UpdateHealthBar()
+    {
+        if (healthBar != null)
+        {
+            healthBar.SetSlider(currentHealth);
         }
     }
 

@@ -10,7 +10,6 @@ public class ShopItemSlot : MonoBehaviour
     [Header("UI")]
     public Image itemImageUI;
     public TextMeshProUGUI itemNameUI;
-    public TextMeshProUGUI itemPriceUI;
     public Button buyButtonUI;
 
     [Header("Data")]
@@ -18,37 +17,46 @@ public class ShopItemSlot : MonoBehaviour
 
     private void Start()
     {
-        buyButtonUI.onClick.AddListener(BuyItem);
+        buyButtonUI.onClick.AddListener(SelectItem);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Setup(BuySystem.ShopItemData itemData)
     {
-        
-        int currentMoney = InventorySystem.Instance.currentCoins;
+        shopItemData = itemData;
 
-        // Enable/Disable Button based on current owned money
-        if (shopItemData.itemPrice <= currentMoney) 
+        if (itemNameUI != null)
         {
+            itemNameUI.text = shopItemData.itemName;
+        }
+
+        if (itemImageUI != null)
+        {
+            itemImageUI.sprite = shopItemData.itemIcon;
+            itemImageUI.enabled = shopItemData.itemIcon != null;
+        }
+
+        if (buyButtonUI != null)
+        {
+            buyButtonUI.onClick.RemoveListener(SelectItem);
+            buyButtonUI.onClick.AddListener(SelectItem);
             buyButtonUI.interactable = true;
         }
-        else
-        {
-            buyButtonUI.interactable = false;
-        }
+
     }
 
-    public void BuyItem()
+    public void SelectItem()
     {
-        // Remove Coins
-        //InventorySystem.Instance.currentCoins -= shopItemData.itemPrice;
-
-        // Get inventory item Name
-        //InventoryItem inventoryItem = shopItemData.inventoryItem.GetComponent<InventoryItem>();
-
-        // Add items into inventory
-        //InventorySystem.Instance.AddToInventory(inventoryItem.thisName, true);
-
-        //Debug.Log("Bought " + inventoryItem.thisName);
+        
+        if (BuySystem.Instance != null)
+        {
+            BuySystem.Instance.SelectItem(shopItemData);
+        }
+    }
+    private void OnDestroy()
+    {
+        if (buyButtonUI != null)
+        {
+            buyButtonUI.onClick.RemoveListener(SelectItem);
+        }
     }
 }

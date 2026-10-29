@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,6 +27,13 @@ public class Movement : MonoBehaviour
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference jumpAction;
     [SerializeField] private InputActionReference dashAction;
+
+    [Header("Item Boosts")]
+    [SerializeField] private float speedBoostMultiplier = 1.4f;
+    [SerializeField] private float speedBoostDuration = 15f;
+
+    private float baseWalkSpeed;
+    private Coroutine speedBoostCoroutine;
 
 
     //check if characters are performing an action
@@ -101,21 +109,26 @@ public class Movement : MonoBehaviour
     public void Start()
     {
         _horizontalVelocity = walkspeed;
+        baseWalkSpeed = walkspeed;
+        _horizontalVelocity = baseWalkSpeed;
     }
 
     private void Update()
     {
-        if (MovementManager.Instance.canMove) 
+        _isGrounded = _characterController.isGrounded;
+        if (MovementManager.Instance.canMove)
         {
+            //checks if the player is on the ground
             HandleGravity();
             HandleDash();
             HandleMovement();
+            dashTimer.text = "Dash ready in: " + _dashCooldownTimer.ToString("F1");//displays the cooldown timer on the UI
         }
-        _isGrounded = _characterController.isGrounded;//checks if the player is on the ground
-        HandleGravity();
-        HandleDash();
-        HandleMovement();
-        dashTimer.text = "Dash ready in: " + _dashCooldownTimer.ToString("F1");//displays the cooldown timer on the UI
+        else
+        {
+            HandleGravity();
+            dashTimer.text = "Dash ready in: " + _dashCooldownTimer.ToString("F1");//displays the cooldown timer on the UI
+        }
     }
 
     private void HandleGravity() //creates gravithy that makes the player fall back to the ground
@@ -163,6 +176,43 @@ public class Movement : MonoBehaviour
             _verticalVelocity = initialFallVelocity;
         }
 
+    }
+
+    public void ActivateSpeedBoost()
+    {
+        if (speedBoostCoroutine != null)
+        {
+            StopCoroutine(speedBoostCoroutine);
+        }
+
+        speedBoostCoroutine = StartCoroutine(
+            SpeedBoostRoutine()
+        );
+    }
+
+    private IEnumerator SpeedBoostRoutine()
+    {
+        _horizontalVelocity = baseWalkSpeed * speedBoostMultiplier;
+
+        if (!_isDashing)
+        {
+            walkspeed = _horizontalVelocity;
+        }
+
+        Debug.Log("Speed boost activated!");
+
+        yield return new WaitForSeconds(speedBoostDuration);
+
+        _horizontalVelocity = baseWalkSpeed;
+
+        if (!_isDashing)
+        {
+            walkspeed = _horizontalVelocity;
+        }
+
+        speedBoostCoroutine = null;
+
+        Debug.Log("Speed boost ended!");
     }
 
     // Add this to the player Movement class (below existing code)
