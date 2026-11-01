@@ -24,6 +24,7 @@ public class PlayerStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            return;
         }
         //change face sprite based on current health
         if (currentHealth <= maxHealth * 0.25f)
@@ -84,18 +85,53 @@ public class PlayerStats : MonoBehaviour
         
     }
     public void TakeDamage(float amount)
-    {
-        currentHealth -= amount;
+        {
+            if (currentHealth <= 0)
+            return;
+
+         currentHealth -= amount;
         if (currentHealth <= 0)
         {
+            // Stop music and play record scratch
+            MusicManager musicManager = FindFirstObjectByType<MusicManager>();
+
+            if (musicManager != null)
+            {
+                musicManager.PlayerDied();
+            }
+
+            gun playerGun = FindFirstObjectByType<gun>();
+
+            if (playerGun != null)
+            {
+                playerGun.enabled = false;
+            }
+
             FindFirstObjectByType<GameOverManager>().GameOver();
+         
+            EnemyAi[] enemies = FindObjectsByType<EnemyAi>(FindObjectsSortMode.None);
+
+            foreach (EnemyAi enemy in enemies)
+            {         
+                if (enemy.agent != null)
+                {
+                    enemy.agent.isStopped = true;
+                }
+
+                if (enemy.audioSource != null)
+                {
+                    enemy.audioSource.Stop();
+                }
+
+                enemy.enabled = false;
+            }
         }
     }
 
-    private void Die()
-    {
-        Debug.Log("You died");
+        private void Die()
+        {
+            Debug.Log("You died");
 
-        Cursor.visible = true;
-    }
+            Cursor.visible = true;
+        }
 }

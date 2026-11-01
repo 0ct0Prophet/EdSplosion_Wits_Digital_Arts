@@ -27,6 +27,7 @@ public class gun : MonoBehaviour
     //sound 
     [SerializeField] private AudioClip shootSound;
     [SerializeField] private AudioClip reloadSound;
+    [SerializeField] private AudioClip shellLoadSound;
     [SerializeField] private AudioSource sounds;
 
     //bools
@@ -192,5 +193,12 @@ public class gun : MonoBehaviour
         bulletsLeft = magazineSize;
         reloading = false;
     }
-
+    
+    public void PlayShellLoadSound()
+    {
+        if (shellLoadSound != null && sounds != null)
+        {
+            sounds.PlayOneShot(shellLoadSound);
+        }
+    }
 }

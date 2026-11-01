@@ -16,6 +16,11 @@ public class EnemyAi : MonoBehaviour
     public GameObject deathEffect;
     public Transform projectileSpawn;
     public Transform deathEffectSpawn;
+    [Header("Enemy Audio")]
+    public AudioSource audioSource;
+    public AudioClip throwSound;
+    public AudioClip[] hitSound;
+    public AudioClip[] deathSound;
 
     //looking around
     public Vector3 walkPoint;
@@ -114,11 +119,7 @@ public class EnemyAi : MonoBehaviour
         if (!alreadyAttacked)
         {
             ///ATTACK CODE!!
-            Rigidbody rb = Instantiate(
-                enemyWeapon,
-                projectileSpawn.position,
-                Quaternion.identity
-            ).GetComponent<Rigidbody>();
+            Rigidbody rb = Instantiate(enemyWeapon,  projectileSpawn.position, Quaternion.identity).GetComponent<Rigidbody>();
 
             Collider bulletCollider = rb.GetComponent<Collider>();
 
@@ -132,10 +133,9 @@ public class EnemyAi : MonoBehaviour
                 }
             }
 
-            rb.AddForce(
-                (player.position - projectileSpawn.position).normalized * 32f,
-                ForceMode.Impulse
-            );
+            rb.AddForce((player.position - projectileSpawn.position).normalized * 32f, ForceMode.Impulse);
+
+            audioSource.PlayOneShot(throwSound);
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -147,6 +147,19 @@ public class EnemyAi : MonoBehaviour
         alreadyAttacked = false;
     }
 
+    private void PlayRandomSound(AudioClip[] clips)
+    {
+        if (audioSource == null || clips == null || clips.Length == 0)
+            return;
+
+        int randomIndex = Random.Range(0, clips.Length);
+
+        if (clips[randomIndex] != null)
+        {
+            audioSource.PlayOneShot(clips[randomIndex], 7f);
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         ///Take damage code here
@@ -155,8 +168,14 @@ public class EnemyAi : MonoBehaviour
 
         if (health <= 0)
         {
+            PlayRandomSound(deathSound);
+
             Instantiate(deathEffect, deathEffectSpawn.position, Quaternion.identity);
             Invoke(nameof(DestroyEnemy), 3f);
+        }
+        else
+        {
+           PlayRandomSound(hitSound);
         }
     }
 
