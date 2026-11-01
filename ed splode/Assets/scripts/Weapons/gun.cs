@@ -6,6 +6,7 @@ public class gun : MonoBehaviour
 {
     //bullet
     public GameObject bullet;
+    public GameObject arm;
 
     //bullet force
     public float shootForce, upwardForce;
@@ -66,9 +67,9 @@ public class gun : MonoBehaviour
 
     private void ChangeAnimation(string animationName)
     {
-
-            currentAnimation = animationName;
-            animator.Play(animationName);
+        Animator[] anima = arm.FindObjectsByType<Animator>(FindObjectsSortMode.None);
+        currentAnimation = animationName;
+            arm.GetComponent<Animator>().Play(animationName);
     }
     
  
