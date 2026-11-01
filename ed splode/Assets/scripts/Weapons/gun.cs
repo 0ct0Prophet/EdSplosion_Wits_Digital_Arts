@@ -67,7 +67,7 @@ public class gun : MonoBehaviour
 
     private void ChangeAnimation(string animationName)
     {
-        Animator[] anima = arm.FindObjectsByType<Animator>(FindObjectsSortMode.None);
+        Animator[] animators = Object.FindObjectsByType<Animator>(FindObjectsSortMode.None);
         currentAnimation = animationName;
             arm.GetComponent<Animator>().Play(animationName);
     }

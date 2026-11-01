@@ -189,14 +189,7 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
         Vector3 finalMove = move * currentSpeed;
         finalMove.y = _verticalVelocity;
 
-        if (finalMove.magnitude > walkspeed)
-        {
-            ChangeAnimation("run");
-        }
-        else
-        {
-            ChangeAnimation("idle");
-        }
+        
 
         CollisionFlags collisions = _characterController.Move(motion: finalMove * Time.deltaTime);
 
