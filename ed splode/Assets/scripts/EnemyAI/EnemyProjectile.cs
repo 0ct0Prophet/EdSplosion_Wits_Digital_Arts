@@ -1,23 +1,25 @@
-using UnityEngine;
-public class Bullet : MonoBehaviour
-{
-    public float damage;
 
-    private void Start()
+using UnityEngine;
+
+public class EnemyProjectile : MonoBehaviour
+{
+    public int damage = 10;
+    public float lifetime = 5f;
+
+    void Start()
     {
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, lifetime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Player"))
+        PlayerStats player = collision.gameObject.GetComponentInParent<PlayerStats>();
+
+        if (player != null)
         {
-            other.GetComponent<PlayerStats>().TakeDamage(damage);
-            Destroy(gameObject);
+            player.TakeDamage(damage);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+
+        Destroy(gameObject);
     }
 }

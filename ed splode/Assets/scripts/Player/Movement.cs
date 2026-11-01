@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder.MeshOperations;
@@ -41,7 +42,12 @@ public class Movement : MonoBehaviour
     private float _horizontalVelocity;
     private float _dashCooldownTimer = 0f;
 
- 
+    //animation
+    public Animator animator;
+    private string currentAnimation;
+
+    public GameObject arm;
+
     public DashBar dashBar;
 
     private void Awake()
@@ -167,13 +173,23 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
         _dashCooldownTimer -= Time.deltaTime;
     }
 
+    private void ChangeAnimation(string animationName)
+    {
+
+        currentAnimation = animationName;
+        arm.GetComponent<Animator>().Play(animationName);
+    }
+
     private void HandleMovement() //changes movement accoring to the camera direction and the input from the player
     {
+
         Vector3 move = cameraTransform.TransformDirection(new Vector3(_moveInput.x, 0f, _moveInput.y)).normalized;
         float currentSpeed = walkspeed;
        
         Vector3 finalMove = move * currentSpeed;
         finalMove.y = _verticalVelocity;
+
+        
 
         CollisionFlags collisions = _characterController.Move(motion: finalMove * Time.deltaTime);
 

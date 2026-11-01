@@ -46,8 +46,12 @@ public class EnemyManager : MonoBehaviour
         if (exitTrigger != null)
         {
             exitTrigger.SetActive(true);
+
+            FindFirstObjectByType<MusicManager>()?.ElevatorReady();
+
             Debug.Log("ALL ENEMIES DEAD - EXIT ACTIVATED");
         }
+        
         else
         {
             Debug.LogError("Assign the Exit Trigger in the Inspector!");

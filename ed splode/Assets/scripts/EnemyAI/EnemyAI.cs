@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
@@ -13,6 +14,13 @@ public class EnemyAi : MonoBehaviour
     public Color normalColour;
     public Color hitColour = Color.red;
     public GameObject deathEffect;
+    public Transform projectileSpawn;
+    public Transform deathEffectSpawn;
+    [Header("Enemy Audio")]
+    public AudioSource audioSource;
+    public AudioClip throwSound;
+    public AudioClip[] hitSound;
+    public AudioClip[] deathSound;
 
     //looking around
     public Vector3 walkPoint;
@@ -26,14 +34,20 @@ public class EnemyAi : MonoBehaviour
     //states
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+
     IEnumerator FlashRed()
     {
-        enemyRenderer.material.color = hitColour;
+        Material material = enemyRenderer.materials[1];
+
+        Color originalColour = material.color;
+
+        material.color = hitColour;
 
         yield return new WaitForSeconds(0.2f);
 
-        enemyRenderer.material.color = normalColour;
+        material.color = originalColour;
     }
+
     private void Awake()
     {
         player = GameObject.Find("player").transform;
@@ -42,6 +56,12 @@ public class EnemyAi : MonoBehaviour
 
     private void Update()
     {
+        if (health <= 0)
+        {   
+            agent.isStopped = true;
+             return;
+        }
+        
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -92,23 +112,52 @@ public class EnemyAi : MonoBehaviour
         //Make sure enemy doesn't move
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player.position);
+        Vector3 lookPosition = player.position;
+        lookPosition.y = transform.position.y;
+        transform.LookAt(lookPosition);
 
-    
         if (!alreadyAttacked)
-    {
-    ///ATTACK CODE!!
-      Rigidbody rb = Instantiate(enemyWeapon,transform.position + transform.forward, Quaternion.identity).GetComponent<Rigidbody>();
-    rb.AddForce((player.position - transform.position).normalized * 32f, ForceMode.Impulse);
+        {
+            ///ATTACK CODE!!
+            Rigidbody rb = Instantiate(enemyWeapon,  projectileSpawn.position, Quaternion.identity).GetComponent<Rigidbody>();
 
-      alreadyAttacked = true;
-      Invoke(nameof(ResetAttack), timeBetweenAttacks);
-    }
+            Collider bulletCollider = rb.GetComponent<Collider>();
+
+            if (bulletCollider != null)
+            {
+                Collider[] enemyColliders = GetComponentsInChildren<Collider>();
+
+                foreach (Collider enemyCollider in enemyColliders)
+                {
+                    Physics.IgnoreCollision(bulletCollider, enemyCollider);
+                }
+            }
+
+            rb.AddForce((player.position - projectileSpawn.position).normalized * 32f, ForceMode.Impulse);
+
+            audioSource.PlayOneShot(throwSound);
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
     }
 
     private void ResetAttack()
     {
         alreadyAttacked = false;
+    }
+
+    private void PlayRandomSound(AudioClip[] clips)
+    {
+        if (audioSource == null || clips == null || clips.Length == 0)
+            return;
+
+        int randomIndex = Random.Range(0, clips.Length);
+
+        if (clips[randomIndex] != null)
+        {
+            audioSource.PlayOneShot(clips[randomIndex], 7f);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -119,8 +168,14 @@ public class EnemyAi : MonoBehaviour
 
         if (health <= 0)
         {
-            Instantiate(deathEffect, transform.position, Quaternion.identity);
-            Invoke(nameof(DestroyEnemy), 0.1f);
+            PlayRandomSound(deathSound);
+
+            Instantiate(deathEffect, deathEffectSpawn.position, Quaternion.identity);
+            Invoke(nameof(DestroyEnemy), 3f);
+        }
+        else
+        {
+           PlayRandomSound(hitSound);
         }
     }
 
@@ -128,6 +183,4 @@ public class EnemyAi : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
 }
-

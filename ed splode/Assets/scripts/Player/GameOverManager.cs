@@ -4,15 +4,23 @@ using UnityEngine.SceneManagement;
 public class GameOverManager : MonoBehaviour
 {
     public GameObject gameOverPanel;
+    public GameObject[] gameplayHUD;
 
     public void GameOver()
+{
+    Cursor.visible = true;
+    Cursor.lockState = CursorLockMode.None;
+
+    // Hide all gameplay HUD elements
+    foreach (GameObject hud in gameplayHUD)
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        gameOverPanel.SetActive(true);
-        Time.timeScale = 0f;
-        
+        if (hud != null)
+            hud.SetActive(false);
     }
+
+    gameOverPanel.SetActive(true);
+    Time.timeScale = 0f;
+}
 
     public void RestartGame()
     {

@@ -6,6 +6,7 @@ public class gun : MonoBehaviour
 {
     //bullet
     public GameObject bullet;
+    public GameObject arm;
 
     //bullet force
     public float shootForce, upwardForce;
@@ -27,6 +28,7 @@ public class gun : MonoBehaviour
     //sound 
     [SerializeField] private AudioClip shootSound;
     [SerializeField] private AudioClip reloadSound;
+    [SerializeField] private AudioClip shellLoadSound;
     [SerializeField] private AudioSource sounds;
 
     //bools
@@ -65,9 +67,9 @@ public class gun : MonoBehaviour
 
     private void ChangeAnimation(string animationName)
     {
-
-            currentAnimation = animationName;
-            animator.Play(animationName);
+        Animator[] animators = Object.FindObjectsByType<Animator>(FindObjectsSortMode.None);
+        currentAnimation = animationName;
+            arm.GetComponent<Animator>().Play(animationName);
     }
     
  
@@ -192,5 +194,12 @@ public class gun : MonoBehaviour
         bulletsLeft = magazineSize;
         reloading = false;
     }
-
+    
+    public void PlayShellLoadSound()
+    {
+        if (shellLoadSound != null && sounds != null)
+        {
+            sounds.PlayOneShot(shellLoadSound);
+        }
+    }
 }
