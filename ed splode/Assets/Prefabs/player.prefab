@@ -1095,6 +1095,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -2423400223337494397, guid: 9eb86045a5395f043ba975f2308e93e5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3178220014251644725}
+    - targetCorrespondingSourceObject: {fileID: -2423400223337494397, guid: 9eb86045a5395f043ba975f2308e93e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6455845002576593095}
     - targetCorrespondingSourceObject: {fileID: 3059446773676373899, guid: 9eb86045a5395f043ba975f2308e93e5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4628260473235742780}
@@ -1126,6 +1129,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6455845002576593095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286170350139526045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd277232d386854fb756bab8efc4020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ReloadSoundRelay
+  playerGun: {fileID: 0}
 --- !u!4 &2246256061956079438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3410506171547861936, guid: 9eb86045a5395f043ba975f2308e93e5, type: 3}
