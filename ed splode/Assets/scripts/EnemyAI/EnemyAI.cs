@@ -177,6 +177,12 @@ public class EnemyAi : MonoBehaviour
         {
            PlayRandomSound(hitSound);
         }
+        EdnaKillVoice ednaVoice = FindFirstObjectByType<EdnaKillVoice>();
+
+        if (ednaVoice != null)
+        {
+            ednaVoice.RegisterKill(gameObject);
+        }       
     }
 
     private void DestroyEnemy()
