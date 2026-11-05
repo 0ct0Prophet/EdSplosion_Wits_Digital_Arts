@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float dashSpeed = 40f;
     [SerializeField] private float DashDecaySpeed = -10f;
     [SerializeField] private float dashCooldown = 5f;
+    [SerializeField] private AudioSource dashAudio;
     
 
     [Header("References")] //references to the player and the character controller
@@ -95,6 +96,12 @@ private void Dash(InputAction.CallbackContext context) //makes the player dash
     {
         if (!_isDashing && _dashCooldownTimer <= 0)//checks if the player is already dashing and if timer is at 0.
         {
+
+            if (dashAudio != null && dashAudio.clip != null)
+            {
+                dashAudio.PlayOneShot(dashAudio.clip);
+            }
+
             if (_horizontalVelocity <= walkspeed)
             {
                 playeRigidbody.AddForce(transform.forward * dashSpeed, ForceMode.VelocityChange);//adds force to the player in the direction they are facing
