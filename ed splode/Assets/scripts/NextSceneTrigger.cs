@@ -1,10 +1,19 @@
 
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class NextSceneTrigger : MonoBehaviour
 {
     public string nextSceneName;
+    public Animator animator;
+    private string currentAnimation;
+    private void ChangeAnimation(string animationName)
+    {
+
+        currentAnimation = animationName;
+        animator.Play(animationName);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
