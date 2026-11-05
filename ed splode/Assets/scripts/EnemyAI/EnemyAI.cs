@@ -21,6 +21,7 @@ public class EnemyAi : MonoBehaviour
     public AudioClip throwSound;
     public AudioClip[] hitSound;
     public AudioClip[] deathSound;
+    [SerializeField] private float projectileSpeed = 20f;
 
     //looking around
     public Vector3 walkPoint;
@@ -133,7 +134,7 @@ public class EnemyAi : MonoBehaviour
                 }
             }
 
-            rb.AddForce((player.position - projectileSpawn.position).normalized * 32f, ForceMode.Impulse);
+            rb.AddForce((player.position - projectileSpawn.position).normalized * projectileSpeed, ForceMode.Impulse);
 
             audioSource.PlayOneShot(throwSound);
 
