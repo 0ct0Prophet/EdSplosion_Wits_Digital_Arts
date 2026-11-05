@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1573546436864400184}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.02298277, y: -0.8384771, z: -0.035469703, w: 0.5432954}
-  m_LocalPosition: {x: 0.038000107, y: 1.2460002, z: 0.71500015}
+  m_LocalRotation: {x: -0.5282846, y: 0.31892622, z: 0.2232911, w: 0.7545479}
+  m_LocalPosition: {x: 0.037999976, y: 1.2460002, z: 0.7150001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -94,7 +94,7 @@ MonoBehaviour:
   ReferenceFrame: 0
   RecenterTarget: 0
   PanAxis:
-    Value: -114.117165
+    Value: 45.824837
     Center: 0
     Range: {x: -180, y: 180}
     Wrap: 1
@@ -104,7 +104,7 @@ MonoBehaviour:
       Time: 2
     Restrictions: 0
   TiltAxis:
-    Value: -4.8446245
+    Value: -69.99435
     Center: 0
     Range: {x: -70, y: 70}
     Wrap: 0
@@ -353,9 +353,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   walkspeed: 12
-  jumpForce: 5
-  gravity: -15
-  initialFallVelocity: -4
+  jumpForce: 10
+  gravity: -20
+  initialFallVelocity: -20
   dashSpeed: 45
   DashDecaySpeed: -60
   dashCooldown: 5
@@ -440,7 +440,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6642171816229034763}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -454,7 +454,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 0
   m_ImplicitTensor: 0
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -632,6 +632,14 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1114263355032013189, guid: 52b3011a932e11048a403400082d6681, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1114263355032013189, guid: 52b3011a932e11048a403400082d6681, type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2346628433652531468, guid: 52b3011a932e11048a403400082d6681, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.8413873
@@ -690,15 +698,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5688161303481122210, guid: 52b3011a932e11048a403400082d6681, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 5688161303481122210, guid: 52b3011a932e11048a403400082d6681, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 8.86e-43
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 5688161303481122210, guid: 52b3011a932e11048a403400082d6681, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 9.723e-41
+      value: -7.729998e-31
       objectReference: {fileID: 0}
     - target: {fileID: 5688161303481122210, guid: 52b3011a932e11048a403400082d6681, type: 3}
       propertyPath: m_BoundingSphereOverride.z
@@ -850,17 +858,17 @@ MonoBehaviour:
   arm: {fileID: 1286170350139526045}
   shootForce: 25
   upwardForce: 1
-  timeBetweenShooting: 0.4
-  spread: 0
-  reloadTime: 2
-  timeBetweenShots: 1
-  magazineSize: 15
+  timeBetweenShooting: 0.6
+  spread: 0.2
+  reloadTime: 0.6
+  timeBetweenShots: 2
+  magazineSize: 4
   bulletsPerTap: 1
-  allowButtonHold: 0
+  allowButtonHold: 1
   playerRB: {fileID: 6661353001517928361}
   recoilForce: 0
   animator: {fileID: 0}
-  shootSound: {fileID: 8300000, guid: fb80248010ea68e40b60ccce0f90a5d7, type: 3}
+  shootSound: {fileID: 8300000, guid: df5d650347dacf34cbf8c56c63390fa1, type: 3}
   reloadSound: {fileID: 8300000, guid: 4d71a434f91634f4e922bb0186477a78, type: 3}
   shellLoadSound: {fileID: 8300000, guid: c27c1d72ac8312e44b150b23155d17e8, type: 3}
   sounds: {fileID: 0}
@@ -1340,6 +1348,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 3.233
       objectReference: {fileID: 0}
+    - target: {fileID: 8275350343981809539, guid: 9eb86045a5395f043ba975f2308e93e5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8275350343981809539, guid: 9eb86045a5395f043ba975f2308e93e5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cf75e1fd58831cb4aa58aaaaae5224f6, type: 2}
+    - target: {fileID: 8275350343981809539, guid: 9eb86045a5395f043ba975f2308e93e5, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 42db37e61b6f8e14c8627b12aff14bf1, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

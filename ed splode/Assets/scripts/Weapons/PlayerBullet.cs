@@ -3,7 +3,14 @@ using UnityEngine;
 public class PlayerBullet : MonoBehaviour
 {
     [SerializeField] private int Damage = 10;
-  private void OnCollisionEnter(Collision collision)
+    [SerializeField] private float lifetime = 5f;
+
+    void Start()
+    {
+        Destroy(gameObject, lifetime);
+    }
+
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {

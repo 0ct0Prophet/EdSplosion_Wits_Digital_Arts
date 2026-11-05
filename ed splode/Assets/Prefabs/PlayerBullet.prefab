@@ -276,3 +276,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBullet
   Damage: 20
+  lifetime: 0.2

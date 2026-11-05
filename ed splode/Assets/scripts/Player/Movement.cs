@@ -84,7 +84,7 @@ public class Movement : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context) //makes the player jump
     {
-        if (_isGrounded)//if on the ground, jump and allow double jump
+        if (_isGrounded)//if on the ground, jump
         {
             _verticalVelocity = jumpForce;
         }
