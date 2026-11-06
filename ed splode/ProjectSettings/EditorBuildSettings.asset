@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/gameplay scene.unity
     guid: c61329befd237e04d9119290f14ef7ed
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 0447925e8901ade468ecd1a049164505
   - enabled: 0
     path: Assets/Scenes/place to carry over scene/environment.unity
-    guid: 2b0b8730866002a4a9e9dc18b020abf4
+    guid: b17d14364092c73439ae7aaf2eb1e932
   - enabled: 1
     path: Assets/Scenes/LEVEL_01.unity
     guid: 29d77f776ac8ea44e91ac0eea76a9b47
