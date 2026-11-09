@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("LEVEL_01");
+        SceneManager.LoadScene("intro cutscene");
     }
 
     public void OpenCredits()
