@@ -258,6 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NextSceneTrigger
   nextSceneName: LEVEL_02
+  animator: {fileID: 0}
 --- !u!95 &7561533908866142143
 Animator:
   serializedVersion: 7
@@ -268,7 +269,7 @@ Animator:
   m_GameObject: {fileID: 5064994224461743099}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 596de8cca5c9e8b4e8b93236f80d2ace, type: 2}
+  m_Controller: {fileID: 9100000, guid: 450bbf7c225c33146a750ea79e31bea8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
