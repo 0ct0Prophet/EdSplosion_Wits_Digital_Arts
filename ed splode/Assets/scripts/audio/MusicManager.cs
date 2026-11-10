@@ -7,6 +7,7 @@ public class MusicManager : MonoBehaviour
     public AudioSource scratchSource;
     public AudioClip recordScratch;
     public AudioClip elevatorDing;
+    [SerializeField] private bool playElevatorDing = true;
 
     public float fadeDuration = 3f;
 
@@ -74,6 +75,9 @@ public class MusicManager : MonoBehaviour
 
         musicSource.Stop();
 
-        scratchSource.PlayOneShot(elevatorDing);
+        if (playElevatorDing)
+        {
+            scratchSource.PlayOneShot(elevatorDing);
+        }
     }
 }
