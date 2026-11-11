@@ -17,8 +17,9 @@ MonoBehaviour:
   - We're satisfied with your work...
   - But it needs a little improvement.
   - We'll put a pin in that for now...
-  - For the final phase of training we have some eployees who have not met our caompany
-    standard.
+  - For the final phase of training we have some employees-
+  - ' who have not met our caompany standard.'
   - We need you to "let them go".
   - Here's an upgrade to your gun. Good Luck.
-  line: hello
+  line: For the final phase of training we have some eployees who have not met our
+    caompany standard.

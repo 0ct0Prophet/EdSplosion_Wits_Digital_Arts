@@ -16,6 +16,7 @@ MonoBehaviour:
   - Congragulations employee.
   - You have completed the first phase of training
   - Good work.
-  - We've made your movement faster to see how you perform in the next phase of training.
+  - We've made your movement faster-
+  - ' to see how you perform in the next phase of training.'
   - Best.
   line: hello
