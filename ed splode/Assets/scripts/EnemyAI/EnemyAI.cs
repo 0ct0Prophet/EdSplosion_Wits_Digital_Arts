@@ -22,6 +22,9 @@ public class EnemyAi : MonoBehaviour
     public AudioClip[] hitSound;
     public AudioClip[] deathSound;
     [SerializeField] private float projectileSpeed = 20f;
+    [Header("Enemy Start Delay")]
+    [SerializeField] private float startDelay = 3f;
+    private float activationTime;
 
     //looking around
     public Vector3 walkPoint;
@@ -53,14 +56,22 @@ public class EnemyAi : MonoBehaviour
     {
         player = GameObject.Find("player").transform;
         agent = GetComponent<NavMeshAgent>();
+        activationTime = Time.time + startDelay;
     }
 
     private void Update()
     {
+        
+
         if (health <= 0)
         {   
             agent.isStopped = true;
              return;
+        }
+
+        if (Time.time < activationTime)
+        {
+           return;
         }
         
         //Check for sight and attack range
