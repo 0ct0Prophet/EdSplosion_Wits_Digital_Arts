@@ -54,6 +54,7 @@ public class EnemyAi : MonoBehaviour
         player = GameObject.Find("player").transform;
         agent = GetComponent<NavMeshAgent>();
     }
+   
 
     private void Update()
     {
