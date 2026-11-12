@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: NPCDialog1
   m_EditorClassIdentifier: Assembly-CSharp::NarrationLines
   lines:
-  - Congragulations employee.
+  - Congragula-tions employee.
   - You have completed the first phase of training
   - Good work.
   - We've made your movement faster-
   - ' to see how you perform in the next phase of training.'
   - Best.
-  line: hello
+  line: Best.
