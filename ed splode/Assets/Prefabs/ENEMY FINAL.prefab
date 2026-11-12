@@ -1178,7 +1178,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c5963301ba05e714e9f3ac3c31167db8, type: 3}
   - {fileID: 8300000, guid: 47d5d53d4fbf90e40a0822b5f5ba7951, type: 3}
   projectileSpeed: 9
-  startDelay: 2
+  startDelay: 1
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
   timeBetweenAttacks: 1

@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
   walkspeed: 12
-  jumpForce: 5
+  jumpForce: 10
   gravity: -20
   initialFallVelocity: -20
   dashSpeed: 45
